@@ -26,7 +26,7 @@ namespace TrxerConsole
         {
             if (args.Any() == false)
             {
-                Console.WriteLine("No trx file,  Trxer.exe <filename>");
+                Console.WriteLine("No trx file, TrxerConsole.exe <filename>");
                 return;
             }
             Console.WriteLine("Trx File\n{0}", args[0]);

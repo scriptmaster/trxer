@@ -104,7 +104,7 @@
           <br />
           <xsl:variable name="testRunOutcome" select="t:TestRun/t:ResultSummary/@outcome"/>
 
-          <div class="StatusBar statusBar{$testRunOutcome}">
+          <div style="display: none" class="StatusBar statusBar{$testRunOutcome}">
             <div class="statusBar{$testRunOutcome}Inner">
               <center>
                 <h1 class="hWhite">
@@ -133,7 +133,7 @@
                 </tr>
                 <tr id="DownloadSection">
                   <td>
-                    <a href="#" class="button" id="btn-download" download="{/t:TestRun/@name}StatusesPie.png">Save graph</a>
+                    <!-- <a href="#" class="button" id="btn-download" download="{/t:TestRun/@name}StatusesPie.png">Save graph</a> -->
                   </td>
                 </tr>
               </tbody>
@@ -226,9 +226,9 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row" class="column1">Machine</th>
+                  <th scope="row" class="column1"></th>
                   <td>
-                    <xsl:value-of select="//t:UnitTestResult/@computerName" />
+                    <!-- <xsl:value-of select="//t:UnitTestResult/@computerName" /> -->
                   </td>
                 </tr>
                 <tr>
@@ -264,14 +264,14 @@
                 <tr id="{generate-id(faileds)}TestsContainer" class="visibleRow">
                   <td colspan="4">
                     <div id="exceptionArrow">↳</div>
-                    <table>
+                    <table width="100%">
                       <thead>
                         <tr class="odd">
                           <th scope="col" class="TestsTable">Time</th>
                           <th scope="col" class="TestsTable" abbr="Status">Status</th>
                           <th scope="col" class="TestsTable" abbr="Test">Test</th>
                           <th scope="col" class="TestsTable" abbr="Message">Message</th>
-                          <th scope="col" class="TestsTable" abbr="Message">Owner</th>
+                          <!-- <th scope="col" class="TestsTable" abbr="Message">Owner</th> -->
                           <th scope="col" class="TestsTable" abbr="Exception">Duration</th>
                         </tr>
                       </thead>
@@ -340,7 +340,7 @@
                           <th scope="col" class="TestsTable" abbr="Status">Status</th>
                           <th scope="col" class="TestsTable" abbr="Test">Test</th>
                           <th scope="col" class="TestsTable" abbr="Message">Message</th>
-                          <th scope="col" class="TestsTable" abbr="Message">Owner</th>
+                          <!-- <th scope="col" class="TestsTable" abbr="Message">Owner</th> -->
                           <th scope="col" class="TestsTable" abbr="Exception">Duration</th>
                         </tr>
                       </thead>
@@ -363,14 +363,14 @@
               </xsl:for-each>
             </tbody>
           </table>
-          <Table>
+          <table width="100%">
             <caption>Five most slowest tests</caption>
             <thead>
               <tr class="odd">
                 <th scope="col">Time</th>
                 <th scope="col" abbr="Status">Status</th>
                 <th scope="col" abbr="Test">Test</th>
-                <th scope="col" abbr="Message">Owner</th>
+                <!-- <th scope="col" abbr="Message">Owner</th> -->
                 <th scope="col" abbr="Message">Duration</th>
               </tr>
             </thead>
@@ -390,7 +390,7 @@
                       <xsl:value-of select="trxreport:RemoveAssemblyName(/t:TestRun/t:TestDefinitions/t:UnitTest[@id=$testId]/t:TestMethod/@className)"/>
                       .<xsl:value-of select="@testName"/>
                     </td>
-                    <td>
+                    <!-- <td>
                       <xsl:variable name="nameSet" select="/t:TestRun/t:TestDefinitions/t:UnitTest[@id=$testId]/t:Owners/t:Owner"/>
                       <xsl:variable name="nameCount" select="count($nameSet)"/>
                       <xsl:for-each select="$nameSet">
@@ -399,7 +399,7 @@
                           <br/>
                         </xsl:if>
                       </xsl:for-each>
-                    </td>
+                    </td> -->
                     <td class="Message slowest">
                       <xsl:value-of select="trxreport:ToExactTimeDefinition(@duration)"/>
                     </td>
@@ -408,11 +408,11 @@
               </xsl:for-each>
               <tr>
                 <td colspan="5">
-                  <h6>TRX Html Viewer log - Niv Navick 2015</h6>
+                  <h6>Test Run Html Viewer - Script Master H M Sheriff 2020</h6>
                 </td>
               </tr>
             </tbody>
-          </Table>
+          </table>
         </div>
       </body>
       <script>
@@ -476,11 +476,13 @@
 
         </td>
         <td class="Messages">
-          <xsl:call-template name="debugInfo">
-            <xsl:with-param name="testId" select="$testId" />
-          </xsl:call-template>
+          <pre style="white-space: pre-wrap">
+            <xsl:call-template name="debugInfo">
+              <xsl:with-param name="testId" select="$testId" />
+            </xsl:call-template>
+          </pre>
         </td>
-        <td class="Message">
+        <!-- <td class="Message">
           <xsl:variable name="nameSet" select="/t:TestRun/t:TestDefinitions/t:UnitTest[@id=$testId]/t:Owners/t:Owner"/>
           <xsl:variable name="nameCount" select="count($nameSet)"/>
           <xsl:for-each select="$nameSet">
@@ -489,7 +491,7 @@
               <br/>
             </xsl:if>
           </xsl:for-each>
-        </td>
+        </td> -->
         <td class="Message">
           <xsl:value-of select="trxreport:ToExactTimeDefinition(@duration)" />
         </td>
@@ -573,9 +575,6 @@
         <br/>
       </xsl:if>
 
-
-
     </xsl:for-each>
   </xsl:template>
 </xsl:stylesheet>
-
